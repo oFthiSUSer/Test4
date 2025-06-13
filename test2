@@ -1,1 +1,1114 @@
- task.spawn(otc() while task.wait(1) do for i, v in pairs(workspace:GetDescendants()) do if v:IsA("\66\105\108\108\98\111\97\114\100\71\117\105") then v.AlwaysOnTop =true end end end end) task.spawn(otc() local j:Folder = workspace.Entities j.ChildAdded:Connect(otc(h) if h.Name == "\65\45\53" then task.wait(1) h:Destroy() end if h.Name == "\65\45\50\53\56" then for i, v in pairs(h:GetDescendants()) do if v:IsA("\83\111\117\110\100") then v.Volume = 0 end end end end) end) task.spawn(otc() local j:Folder = workspace.Entities j.ChildAdded:Connect(otc(h) Instance.new("\72\105\103\104\108\105\103\104\116", h) game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", { Title = h.Name .. "\32\83\112\97\119\110\101\100", Text = h.Name .. "\32\83\112\97\119\110\101\100", Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\48\55\51\53\50\53\48\55\53\54", Duration = 5, Button1 = "\79\75", }) end) j.ChildRemoved:Connect(otc(h) game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", { Title = h.Name .. "\32\82\101\109\111\118\105\110\103", Text = h.Name .. "\32\82\101\109\111\118\105\110\103", Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\48\55\51\53\50\53\48\55\53\54", Duration = 5, Button1 = "\79\75", }) end) end) task.spawn(otc() local j:Folder = workspace.Clones j.ChildAdded:Connect(otc(h) game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", { Title = h.Name .. "\32\83\112\97\119\110\101\100", Text = h.Name .. "\32\83\112\97\119\110\101\100", Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\48\55\51\53\50\53\48\55\53\54", Duration = 5, Button1 = "\79\75", }) end) j.ChildRemoved:Connect(otc(h) game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", { Title = h.Name .. "\32\82\101\109\111\118\105\110\103", Text = h.Name .. "\32\82\101\109\111\118\105\110\103", Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\48\55\51\53\50\53\48\55\53\54", Duration = 5, Button1 = "\79\75", }) end) end) task.spawn(otc() while task.wait(0.5) do if game.StarterPlayer.StarterCharacterScripts:FindFirstChild("\67\97\109\101\114\97\67\70\114\97\109\101") then game.StarterPlayer.StarterCharacterScripts:FindFirstChild("\67\97\109\101\114\97\67\70\114\97\109\101"):Destroy() end for i, v in pairs(workspace:GetDescendants()) do if v:FindFirstChild("\67\97\109\101\114\97\67\70\114\97\109\101") then v:FindFirstChild("\67\97\109\101\114\97\67\70\114\97\109\101"):Destroy() end if v:FindFirstChild("\83\104\97\107\101\83\99\114\105\112\116") then v:FindFirstChild("\83\104\97\107\101\83\99\114\105\112\116"):Destroy() end end end end) task.spawn(otc() local s = Instance.new("\72\105\103\104\108\105\103\104\116") s.FillColor = Color3.new(0,1,0) s.FillTransparency = 0.5 s.OutlineColor = Color3.new(1,1,1) s.OutlineTransparency = 0.75 local l = {} local q:Folder = workspace:WaitForChild("\71\101\110\101\114\97\116\101\100\82\111\111\109\115") q.ChildAdded:Connect(otc(o) for i, v in pairs(l) do v:Destroy() end l = {} for i, v in pairs(o:GetChildren()) do local a_ = false for i, h in pairs(v:GetDescendants()) do if h:IsA('ProximityPrompt') then a_ = true end end if a_ then local na = s:Clone() na.Parent = v table.insert(l, na) end end end) end) task.spawn(otc() local q:Folder = workspace:WaitForChild("\71\101\110\101\114\97\116\101\100\82\111\111\109\115") local otc a() local eq = nil local m = 0 for i, o in pairs(q:GetChildren()) do local t = tonumber(string.sub(o.Name, -1, -1)) if t > m then eq = o end end return eq end local c = nil c = q.ChildAdded:Connect(otc(o) local t = tonumber(string.sub(o.Name, -1, -1)) if t < 310 then return end c:Disconnect() c = nil local ot = Random.new() local po = { "\240\159\167\134", "\208\145\208\158\208\145\208\152\208\154\32\240\159\167\134", "\208\145\208\158\208\145\240\159\167\134\208\152\208\154\32\240\159\167\134\208\145\208\158\208\145\32\240\159\167\134", "\208\145\240\159\167\134\208\152\208\145\208\158\208\145\240\159\167\134\208\152\208\145\208\152\208\154\32\240\159\167\134", "\208\145\240\159\167\134\32\208\145\208\158\208\145\240\159\167\134", "\208\145\240\159\167\134\208\145", "\208\145\240\159\167\134\208\145\208\152\208\154\208\145\240\159\167\134\208\145\32\208\145\240\159\167\134\208\145\208\152\208\154", "\240\159\167\134\240\159\167\134\240\159\167\134\240\159\167\134\240\159\167\134\240\159\167\134", "\240\159\167\134\240\159\167\134\32\208\158\208\145\208\158\32\208\145\208\158\208\145\208\152\208\154\32\208\145\208\158\208\145\32\208\145\208\158\240\159\167\134\208\158\208\145\208\145\240\159\167\134\208\158\208\145\32\208\145\240\159\167\134\208\145\32\240\159\167\134", [[БОБИК 🧆🧆🧆 БО🧆ОББ🧆ОБ 🧆🧆 БОБЫ 🧆 БОБОБ 🧆 БАОб 🧆🧆🧆🧆 Б🧆Б ОБО БОБ БОБИ]] } local otc bobify(g:Frame) g.Rotation = ot:NextNumber(-5.000, 5.000) g.Button1.Rotation = ot:NextNumber(-5.000, 5.000) g.NotificationImage.Rotation = ot:NextNumber(-5.000, 5.000) g.NotificationText.Rotation = ot:NextNumber(-5.000, 5.000) g.NotificationTitle.Rotation = ot:NextNumber(-5.000, 5.000) g.NotificationImage.Image = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" g.Button1.Text = po[ot:NextInteger(1, #po)] g.NotificationText.Text = po[ot:NextInteger(1, #po)] g.NotificationTitle.Text = po[ot:NextInteger(1, #po)]    end task.wait(0.5) local g = nil game:GetService("\67\111\114\101\71\117\105").RobloxGui.NotificationFrame.ChildAdded:Once(otc(p:Frame) g = p end) game:GetService("\83\116\97\114\116\101\114\71\117\105"):SetCore("\83\101\110\100\78\111\116\105\102\105\99\97\116\105\111\110", { Title = "\65\45\54\48\54" .. "\32\83\112\97\119\110\101\100", Text = "\65\45\54\48\54" .. "\32\83\112\97\119\110\101\100", Icon = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\48\55\51\53\50\53\48\55\53\54", Duration = 9999999, Button1 = "\79\75", }) repeat wait() until g ~= nil g.Interactable = false task.wait(3) local ig = Instance.new("\83\111\117\110\100", game.SoundService) ig.SoundId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\56\48\51\52\53\53\48\55\54\48\57\56\51\57" ig.Volume = 5 ig:Play() local hi = nil hi = game:GetService("\82\117\110\83\101\114\118\105\99\101").Heartbeat:Connect(otc() bobify(g) end) task.wait(1) ig:Destroy() hi:Disconnect() hi = nil local otc coverPart(part: BasePart) local f = Instance.new("\68\101\99\97\108", part) f.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" f.Face = Enum.NormalId.Front local a_l = Instance.new("\68\101\99\97\108", part) a_l.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" a_l.Face = Enum.NormalId.Back local a_l = Instance.new("\68\101\99\97\108", part) a_l.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" a_l.Face = Enum.NormalId.Top local a_l = Instance.new("\68\101\99\97\108", part) a_l.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" a_l.Face = Enum.NormalId.Bottom local a_l = Instance.new("\68\101\99\97\108", part) a_l.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" a_l.Face = Enum.NormalId.Left local a_l = Instance.new("\68\101\99\97\108", part) a_l.Texture = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\54\49\51\48\53\55\51\49\49\52" a_l.Face = Enum.NormalId.Right end g:Destroy() local na_ = Instance.new("\83\111\117\110\100", game:GetService("\83\111\117\110\100\83\101\114\118\105\99\101")) na_.SoundId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\56\51\55\56\51\48\52\55\50" na_.Volume = 0.75 local qn = Instance.new("\83\111\117\110\100", game:GetService("\83\111\117\110\100\83\101\114\118\105\99\101")) qn.SoundId = "\114\98\120\97\115\115\101\116\105\100\58\47\47\49\56\51\55\56\51\48\52\48\50" qn.Volume = 0.5 na_:Play() na_.Ended:Once(otc() na_:Destroy() end) if workspace:FindFirstChild("\71\101\110\101\114\97\116\101\100\82\111\111\109\115") then local eq = a() for i, v in pairs(eq:GetDescendants()) do if v:IsA("\66\97\115\101\80\97\114\116") then coverPart(v) end end q.ChildAdded:Once(otc(p) task.wait(0.1) for i, v in pairs(p:GetDescendants()) do if v:IsA("\66\97\115\101\80\97\114\116") then coverPart(v) end end end) end task.wait(2) qn:Play() qn.Ended:Once(otc() qn:Destroy() end) end) end) task.spawn(otc() local me = false local otc n() if me then return end me = true local otc LoadCustomAsset(url: string) if getcustomasset then if url:lower():sub(1, 4) == "\104\116\116\112" then local ck = `temp_{tick()}.txt` writefile(ck, game:HttpGet(url)) local tc = getcustomasset(ck, true) delfile(ck) return tc elseif isfile(url) then return getcustomasset(url, true) end else warn("\69\120\101\99\117\116\111\114\32\100\111\101\115\110\39\116\32\115\117\112\112\111\114\116\32\39\103\101\116\99\117\115\116\111\109\97\115\115\101\116\39\44\32\114\98\120\97\115\115\101\116\105\100\32\111\110\108\121\46") end if url:find("\114\98\120\97\115\115\101\116\105\100") or tonumber(url) then return "\114\98\120\97\115\115\101\116\105\100\58\47\47"..url:match("%d+") end error(debug.traceback("Failed to load custom asset for:\n"..url)) end local otc LoadCustomInstance(url: string) local pot, tc = pcall(otc() return game:GetObjects(LoadCustomAsset(url))[1] end) if pot then return tc end end local rp:ScreenGui = LoadCustomInstance("\104\116\116\112\115\58\47\47\103\105\116\104\117\98\46\99\111\109\47\111\70\116\104\105\83\85\83\101\114\47\84\101\115\116\52\47\114\97\119\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\102\107\109\46\114\98\120\109") local gr = Instance.new("\66\108\117\114\69\102\102\101\99\116") gr.Size = 24 gr.Enabled = false gr.Parent = game.Lighting local igr = rp.Overlay.ErrorPrompt.UIScale local hig = game:GetService("\84\119\101\101\110\83\101\114\118\105\99\101") local b = TweenInfo.new(0.1,Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false) local fb =hig:Create(igr, b, {Scale = 1}) task.wait(5) rp.Parent = game.Players.LocalPlayer.PlayerGui gr.Enabled =true rp.Overlay.Active = true fb:Play() fb.Completed:Wait() while true do while true do end end end game:GetService("\67\104\97\116").Chatted:Connect(otc(r, jf) if string.lower(jf) == "\98\101\97\110\95\49\50\51" then if me == false then n() end end end) for i, v in pairs(game.Players:GetPlayers()) do v.Chatted:Connect(otc(jf) if string.lower(jf) == "\98\101\97\110\95\49\50\51" then if me == false then n() end end end) end game.DescendantAdded:Connect(otc(h) if h:IsA("\84\101\120\116\76\97\98\101\108") then local jf = h.Text if string.lower(jf) == "\98\101\97\110\95\49\50\51" then if me == false then n() end end end end) end)
+-- IR ALL IN ONE
+local messageStyles = {
+	-- A section
+	["A-5"] = {
+		Name = "A-5",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(90, 116, 66)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11403687687"
+	},
+	["A-10"] = {
+		Name = "A-10",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11218136094"
+	},
+	["X-10"] = {
+		Name = "X-10",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13565313060"
+	},
+	["A-35"] = {
+		Name = "A-35",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11218646640"
+	},
+	["X-35"] = {
+		Name = "X-35",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11802739258"
+	},
+	["A-60"] = {
+		Name = "A-60",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://1972219024"
+	},
+	["X-60"] = {
+		Name = "X-60",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12741832266"
+	},
+	["A-80"] = {
+		Name = "A-80",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0.75,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12984335870"
+	},
+	["A-100"] = {
+		Name = "A-100",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://7057923071"
+	},
+	["X-100"] = {
+		Name = "X-100",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://15175156551"
+	},
+	["A-120"] = {
+		Name = "A-120",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12321153183"
+	},
+	["M-120"] = {
+		Name = "M-120",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.85,0.85,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12323974869"
+	},
+	["X-120"] = {
+		Name = "X-120",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "http://www.roblox.com/asset/?id=14776868120"
+	},
+	["A-150"] = {
+		Name = "A-150",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11218641797"
+	},
+	["A-183"] = {
+		Name = "A-183",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0.5,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://10735250756"
+	},
+	["A-200"] = {
+		Name = "A-200",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12628797727"
+	},
+	["X-200"] = {
+		Name = "X-200",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://10735250756"
+	},
+	["A-245"] = {
+		Name = "A-245",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0.75,0.25)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11588766415"
+	},
+	["A-258"] = {
+		Name = "A-258",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0.5,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12701160941"
+	},
+	["A-278"] = {
+		Name = "A-278",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.75,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11588768740"
+	},
+	["TLAB-278"] = {
+		Name = "TLAB-278",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.75,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12323412243"
+	},
+	["ULB-278"] = {
+		Name = "ULB-278",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12323404202"
+	},
+	["A-300"] = {
+		Name = "A-300",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11807730260"
+	},
+	["A-332"] = {
+		Name = "A-332",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0.75)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11809919727"
+	},
+	["A-350"] = {
+		Name = "A-350",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.5,0.5,0.5)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11816158880"
+	},
+
+	-- E section
+	["E-1"] = {
+		Name = "E-1",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11664221924"
+	},
+	["XE-1"] = {
+		Name = "XE-1",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.5,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13355172251"
+	},
+	["DG-1"] = {
+		Name = "DG-1",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13687619235"
+	},
+	["CHA-1"] = {
+		Name = "CHA-1",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13337011648"
+	},
+	["BM-1"] = {
+		Name = "BM-1",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13900550427"
+	},
+	["E-22"] = {
+		Name = "E-22",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 136, 0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12380796806"
+	},
+	["XE-22"] = {
+		Name = "XE-22",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13959688688"
+	},
+	["E-42"] = {
+		Name = "E-42",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1, 0.9, 0.9)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12252540898"
+	},
+	["E-60"] = {
+		Name = "E-60",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.85,0,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11656041663"
+	},
+	["E-142"] = {
+		Name = "E-142",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,0.5)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11912027660"
+	},
+	["E-144"] = {
+		Name = "E-144",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0.45)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11912028662"
+	},
+	["E-200"] = {
+		Name = "E-200",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,1,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11656992858"
+	},
+	
+	-- V sevtion
+	["V-5"] = {
+		Name = "V-5",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.5,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12229170026"
+	},
+	["XV-5"] = {
+		Name = "XV-5",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,1,0.15)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13948650254"
+	},
+	["V-27"] = {
+		Name = "V-27",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12383040725"
+	},
+	["V-35"] = {
+		Name = "V-35",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12382403840"
+	},
+	["V-50"] = {
+		Name = "V-50",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(1,0.95,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12382406267"
+	},
+}
+
+task.defer(function()
+	game:GetService("StarterGui"):SetCore("SendNotification", {
+		Title = "Loaded",
+		Text = "Loaded",
+		Icon = "rbxassetid://10735250756",
+		Duration = 5,
+		Button1 = "OK",
+	})
+end)
+
+task.spawn(function()
+	while task.wait(1) do
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BillboardGui") then
+				v.AlwaysOnTop =true
+			end
+		end
+	end
+end)
+
+task.spawn(function()
+	local folder:Folder = workspace.Entities
+
+	folder.ChildAdded:Connect(function(d)
+		if d.Name == "A-5" then
+			task.wait(1)
+			d:Destroy()
+		end
+		if d.Name == "A-258" then
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA("Sound") then
+					v.Volume = 0
+				end
+			end
+		end
+	end)
+end)
+
+task.spawn(function()
+	local folder:Folder = workspace.Entities
+	
+	local function getName(str:string)
+		local space, _ = string.find(str, " ")
+		if not space then return string.upper(str) end
+		
+		local entName = string.sub(str, 0, space-1)
+		return string.upper(entName)
+	end
+
+	folder.ChildAdded:Connect(function(d)
+		Instance.new("Highlight", d)
+		
+		local entName = getName(d.Name)
+		
+		local style = messageStyles[entName]
+		
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = d.Name .. " Spawned",
+			Text = d.Name .. " Spawned",
+			Icon = "rbxassetid://10735250756",
+			Duration = 5,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+		
+		local sound = Instance.new("Sound", game:GetService('SoundService'))
+		sound.SoundId = "rbxassetid://2865228231"
+		sound.Volume = 1
+		sound:Play()
+		sound.Ended:Once(function()
+			sound:Destroy()
+		end)
+		
+		if style then
+			notification.NotificationImage.Image = style.Image
+			notification.BackgroundColor3 = Color3.new(1,1,1)
+			local gradient = Instance.new("UIGradient", notification)
+			gradient.Color = style.Color
+		end
+		
+	end)
+
+	folder.ChildRemoved:Connect(function(d)
+		local entName = getName(d.Name)
+
+		local style = messageStyles[entName]
+
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = d.Name .. " Removing",
+			Text = d.Name .. " Removing",
+			Icon = "rbxassetid://10735250756",
+			Duration = 5,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+
+		local sound = Instance.new("Sound", game:GetService('SoundService'))
+		sound.SoundId = "rbxassetid://2865228231"
+		sound.Volume = 1
+		sound:Play()
+		sound.Ended:Once(function()
+			sound:Destroy()
+		end)
+
+		if style then
+			notification.NotificationImage.Image = style.Image
+			notification.BackgroundColor3 = Color3.new(1,1,1)
+			local gradient = Instance.new("UIGradient", notification)
+			gradient.Color = style.Color
+		end
+	end)
+end)
+
+task.spawn(function()
+	local function getName(str:string)
+		local space, _ = string.find(str, " ")
+		if not space then return string.upper(str) end
+
+		local entName = string.sub(str, 0, space-1)
+		return string.upper(entName)
+	end
+	local folder:Folder = workspace.Clones
+
+	folder.ChildAdded:Connect(function(d)
+		local entName = getName(d.Name)
+
+		local style = messageStyles[entName]
+
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = d.Name .. " Spawned",
+			Text = d.Name .. " Spawned",
+			Icon = "rbxassetid://10735250756",
+			Duration = 5,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+
+		local sound = Instance.new("Sound", game:GetService('SoundService'))
+		sound.SoundId = "rbxassetid://2865228231"
+		sound.Volume = 1
+		sound:Play()
+		sound.Ended:Once(function()
+			sound:Destroy()
+		end)
+
+		if style then
+			notification.NotificationImage.Image = style.Image
+			notification.BackgroundColor3 = Color3.new(1,1,1)
+			local gradient = Instance.new("UIGradient", notification)
+			gradient.Color = style.Color
+		end
+	end)
+
+	folder.ChildRemoved:Connect(function(d)
+		local entName = getName(d.Name)
+
+		local style = messageStyles[entName]
+
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = d.Name .. " Removing",
+			Text = d.Name .. " Removing",
+			Icon = "rbxassetid://10735250756",
+			Duration = 5,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+
+		local sound = Instance.new("Sound", game:GetService('SoundService'))
+		sound.SoundId = "rbxassetid://2865228231"
+		sound.Volume = 1
+		sound:Play()
+		sound.Ended:Once(function()
+			sound:Destroy()
+		end)
+
+		if style then
+			notification.NotificationImage.Image = style.Image
+			notification.BackgroundColor3 = Color3.new(1,1,1)
+			local gradient = Instance.new("UIGradient", notification)
+			gradient.Color = style.Color
+		end
+	end)
+end)
+
+task.spawn(function()
+	while task.wait(0.5) do
+		if game.StarterPlayer.StarterCharacterScripts:FindFirstChild("CameraCFrame") then
+			game.StarterPlayer.StarterCharacterScripts:FindFirstChild("CameraCFrame"):Destroy()
+		end
+
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v:FindFirstChild("CameraCFrame") then
+				v:FindFirstChild("CameraCFrame"):Destroy()
+			end
+			if v:FindFirstChild("ShakeScript") then
+				v:FindFirstChild("ShakeScript"):Destroy()
+			end
+		end
+	end
+end)
+
+task.spawn(function()
+	local hl = Instance.new("Highlight")
+	hl.FillColor = Color3.new(0,1,0)
+	hl.FillTransparency = 0.5
+	hl.OutlineColor = Color3.new(1,1,1)
+	hl.OutlineTransparency = 0.75
+	
+	local highlights = {}
+	
+	local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+	
+	Rooms.ChildAdded:Connect(function(room)
+		for i, v in pairs(highlights) do
+			v:Destroy()
+		end
+		highlights = {}
+		
+		for i, v in pairs(room:GetChildren()) do
+			local hasProximityPrompt = false
+			for i, d in pairs(v:GetDescendants()) do
+				if d:IsA('ProximityPrompt') then
+					hasProximityPrompt = true
+				end
+			end
+			if hasProximityPrompt then
+				local highlight = hl:Clone()
+				highlight.Parent = v
+				table.insert(highlights, highlight)
+			end
+		end
+	end)
+end)
+
+task.spawn(function()
+	local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+	
+	local function getLatestRoom()
+		local latestRoom = nil
+		local latestRoomIndex = 0
+
+		for i, room in pairs(Rooms:GetChildren()) do
+			local roomIndex = tonumber(string.sub(room.Name, 11, -1))
+
+			if roomIndex > latestRoomIndex then
+				latestRoom = room
+			end
+		end
+
+		return latestRoom
+	end
+	
+	local connection = nil
+	
+	connection = Rooms.ChildAdded:Connect(function(room)
+		local roomIndex = tonumber(string.sub(room.Name, 11, -1))
+		
+		if roomIndex < 310 then return end
+		
+		connection:Disconnect()
+		connection = nil
+		
+		local rng = Random.new()
+		
+		local strings = {
+			"🧆",
+			"БОБИК 🧆",
+			"БОБ🧆ИК 🧆БОБ 🧆",
+			"Б🧆ИБОБ🧆ИБИК 🧆",
+			"Б🧆 БОБ🧆",
+			"Б🧆Б",
+			"Б🧆БИКБ🧆Б Б🧆БИК",
+			"🧆🧆🧆🧆🧆🧆",
+			"🧆🧆 ОБО БОБИК БОБ БО🧆ОББ🧆ОБ Б🧆Б 🧆",
+			[[БОБИК 🧆🧆🧆 БО🧆ОББ🧆ОБ 🧆🧆 БОБЫ 🧆
+БОБОБ 🧆 БАОб 🧆🧆🧆🧆 Б🧆Б ОБО БОБ БОБИ]]
+		}
+		
+		local function bobify(notification:Frame)
+			notification.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.Button1.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationImage.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationText.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationTitle.Rotation = rng:NextNumber(-5.000, 5.000)
+			
+			notification.NotificationImage.Image = "rbxassetid://16130573114"
+			notification.Button1.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationText.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationTitle.Text = strings[rng:NextInteger(1, #strings)]			
+		end
+		
+		task.wait(0.5)
+		
+		local notification = nil
+		
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+		
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-606" .. " Spawned",
+			Text = "A-606" .. " Spawned",
+			Icon = "rbxassetid://10735250756",
+			Duration = 9999999,
+			Button1 = "OK",
+		})
+		
+		repeat wait() until notification ~= nil
+		
+		notification.Interactable = false
+		
+		task.wait(3)
+		
+		local sound = Instance.new("Sound", game.SoundService)
+		sound.SoundId = "rbxassetid://80345507609839"
+		sound.Volume = 5
+		sound:Play()
+		
+		local glitching = nil
+		glitching = game:GetService("RunService").Heartbeat:Connect(function()
+			bobify(notification)
+		end)
+		
+		task.wait(1)
+		sound:Destroy()
+		glitching:Disconnect()
+		glitching = nil
+		
+		local function coverPart(part: BasePart)
+			local DFront = Instance.new("Decal", part)
+			DFront.Texture = "rbxassetid://16130573114"
+			DFront.Face = Enum.NormalId.Front
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Back
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Top
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Bottom
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Left
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Right
+
+		end
+		
+		notification:Destroy()
+		
+		local boom1 = Instance.new("Sound", game:GetService("SoundService"))
+		boom1.SoundId = "rbxassetid://1837830472"
+		boom1.Volume = 0.75
+		
+		local boom2 = Instance.new("Sound", game:GetService("SoundService"))
+		boom2.SoundId = "rbxassetid://1837830402"
+		boom2.Volume = 0.5
+		
+		boom1:Play()
+		boom1.Ended:Once(function()
+			boom1:Destroy()
+		end)
+		
+		if workspace:FindFirstChild("GeneratedRooms") then
+			local latestRoom = getLatestRoom()
+			for i, v in pairs(latestRoom:GetDescendants()) do
+				if v:IsA("BasePart") then
+					coverPart(v)
+				end
+			end
+			Rooms.ChildAdded:Once(function(child)
+				task.wait(0.1)
+				for i, v in pairs(child:GetDescendants()) do
+					if v:IsA("BasePart") then
+						coverPart(v)
+					end
+				end
+			end)
+		end
+		
+		task.wait(2)
+		
+		boom2:Play()
+		boom2.Ended:Once(function()
+			boom2:Destroy()
+		end)
+		
+		
+		
+	end)
+	
+end)
+
+task.spawn(function()
+	local activated = false
+	
+	local function activate()
+		if activated then return end
+		activated = true
+		
+		local function LoadCustomAsset(url: string)
+			if getcustomasset then
+				if url:lower():sub(1, 4) == "http" then
+					local fileName = `temp_{tick()}.txt`
+					writefile(fileName, game:HttpGet(url))
+					local result = getcustomasset(fileName, true)
+					delfile(fileName)
+					return result
+
+				elseif isfile(url) then
+					return getcustomasset(url, true)
+				end
+			else
+				warn("Executor doesn't support 'getcustomasset', rbxassetid only.")
+			end
+			if url:find("rbxassetid") or tonumber(url) then
+				return "rbxassetid://"..url:match("%d+")
+			end
+			error(debug.traceback("Failed to load custom asset for:\n"..url))
+		end
+
+		local function LoadCustomInstance(url: string)
+			local success, result = pcall(function()
+				return game:GetObjects(LoadCustomAsset(url))[1]
+			end)
+			if success then
+				return result
+			end
+		end
+		
+		local gui:ScreenGui = LoadCustomInstance("https://github.com/oFthiSUSer/Test4/raw/refs/heads/main/fkm.rbxm")
+		local blur = Instance.new("BlurEffect")
+		blur.Size = 24
+		blur.Enabled = false
+		blur.Parent = game.Lighting
+		
+		local scale = gui.Overlay.ErrorPrompt.UIScale
+
+		local tws = game:GetService("TweenService")
+		local info = TweenInfo.new(0.1,Enum.EasingStyle.Linear, Enum.EasingDirection.In, 0, false)
+
+		local tween =tws:Create(scale, info, {Scale = 1})
+
+		task.wait(5)
+		gui.Parent = game:GetService("CoreGui")
+		blur.Enabled =true
+		gui.Overlay.Active = true
+		tween:Play()
+		
+		tween.Completed:Wait()
+		while true do while true do end end
+		
+	end
+	
+	game:GetService("Chat").Chatted:Connect(function(_, msg)
+		if string.lower(msg) == "bean_123" then
+			if activated == false then
+				activate()
+			end
+		end
+	end)
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v.Chatted:Connect(function(msg)
+			if string.lower(msg) == "bean_123" then
+				if activated == false then
+					activate()
+				end
+			end
+		end)
+	end
+	game.DescendantAdded:Connect(function(d)
+		if d:IsA("TextLabel") then
+			local msg = d.Text
+			if string.lower(msg) == "bean_123" then
+				if activated == false then
+					activate()
+				end
+			end
+		end
+	end)
+end)
+
+task.spawn(function()
+	local function LoadCustomAsset(url: string)
+		if getcustomasset then
+			if url:lower():sub(1, 4) == "http" then
+				local fileName = `temp_{tick()}.txt`
+				writefile(fileName, game:HttpGet(url))
+				local result = getcustomasset(fileName, true)
+				delfile(fileName)
+				return result
+
+			elseif isfile(url) then
+				return getcustomasset(url, true)
+			end
+		else
+			warn("Executor doesn't support 'getcustomasset', rbxassetid only.")
+		end
+		if url:find("rbxassetid") or tonumber(url) then
+			return "rbxassetid://"..url:match("%d+")
+		end
+		error(debug.traceback("Failed to load custom asset for:\n"..url))
+	end
+
+	local function LoadCustomInstance(url: string)
+		local success, result = pcall(function()
+			return game:GetObjects(LoadCustomAsset(url))[1]
+		end)
+		if success then
+			return result
+		end
+	end
+	local db = false
+	
+	local bob = LoadCustomInstance("https://github.com/oFthiSUSer/Test4/raw/refs/heads/main/bob.rbxm")
+	bob.Bob.Fire.Playing = false
+	local bobfb = LoadCustomAsset("https://github.com/oFthiSUSer/Test4/blob/main/bobfb.png?raw=true")
+	
+	local function coverPart(part: BasePart)
+		local DFront = Instance.new("Decal", part)
+		DFront.Texture = "rbxassetid://16130573114"
+		DFront.Face = Enum.NormalId.Front
+
+		local DBack = Instance.new("Decal", part)
+		DBack.Texture = "rbxassetid://16130573114"
+		DBack.Face = Enum.NormalId.Back
+
+		local DBack = Instance.new("Decal", part)
+		DBack.Texture = "rbxassetid://16130573114"
+		DBack.Face = Enum.NormalId.Top
+
+		local DBack = Instance.new("Decal", part)
+		DBack.Texture = "rbxassetid://16130573114"
+		DBack.Face = Enum.NormalId.Bottom
+
+		local DBack = Instance.new("Decal", part)
+		DBack.Texture = "rbxassetid://16130573114"
+		DBack.Face = Enum.NormalId.Left
+
+		local DBack = Instance.new("Decal", part)
+		DBack.Texture = "rbxassetid://16130573114"
+		DBack.Face = Enum.NormalId.Right
+
+	end
+	
+	local function activate()
+		db = true
+		local active = true
+		local stop = false
+		local newBob:Model = bob:Clone()
+		newBob.Parent = workspace.Entities
+		newBob.Bob.Fire.Playing = true
+		local character:Model = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+		local hrp:BasePart = character:WaitForChild('HumanoidRootPart')
+		local amb = Instance.new("Sound", game.SoundService)
+		amb.SoundId = "rbxassetid://8270571547"
+		amb.Looped = true
+		Instance.new("DistortionSoundEffect", amb).Level = 0.5
+		amb.Playing = true
+		
+		newBob.Bob.Face.FaceImage.Image = bobfb
+		-- Animate
+		
+		local warperFramerate = 30
+		local lastFrame = 1 
+		local frames = 30 --4*5
+		local rows = 5
+		local columns = 6
+
+		local AnimationFrameWrapper = newBob.Bob.Face
+
+		local AnimatedSprite = AnimationFrameWrapper.FaceImage 
+
+		local t = tick() 
+
+		AnimatedSprite.Size = UDim2.new(columns,0,rows,0)
+
+		local function UpdateWarper()
+			if tick()-t >= 1/warperFramerate then 
+				lastFrame = lastFrame + 1
+				if lastFrame > frames then lastFrame = 1 end 
+				local CurrentColumn = lastFrame 
+				local CurrentRow = 1
+				repeat 
+					if CurrentColumn>columns then
+						CurrentColumn = CurrentColumn - columns
+						CurrentRow = CurrentRow + 1
+					end
+				until not(CurrentColumn>columns)
+
+
+				AnimationFrameWrapper.FaceImage.Position = UDim2.new(-(CurrentColumn-1),0,-(CurrentRow-1),0)
+
+				t = tick()
+			end
+		end
+
+		local animation = game:GetService("RunService").Heartbeat:Connect(function()
+			task.spawn(UpdateWarper)
+		end)
+		newBob.Bob.Position = hrp.Position + Vector3.new(100, 1, 100)
+		-- Move
+		local movement = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+			if not stop then
+				local speed = 15
+				newBob.Bob.CanCollide = false
+
+				local direction = (hrp.Position - newBob.Bob.Position).Unit
+				local newPosition = newBob.Bob.Position + direction * speed * deltaTime
+
+				local lookAtCFrame = CFrame.new(newPosition, hrp.Position)
+
+				local adjustedCFrame = lookAtCFrame * CFrame.Angles(math.rad(90), 0, 0)
+
+				newBob.Bob.CFrame = adjustedCFrame
+			end
+		end)
+		
+		local paint = newBob.Bob.Touched:Connect(function(hit:BasePart)
+			if hit:IsA("BasePart") and not hit:FindFirstChildWhichIsA("Decal") then
+				coverPart(hit)
+			end
+			if hit.Parent:FindFirstChildWhichIsA("Humanoid") and not stop then
+				stop = true
+				task.delay(1.25, function()
+					stop = false
+				end)
+			end
+		end)
+		
+		local function despawn()
+			if not active then return end
+			active = false
+			animation:Disconnect()
+			movement:Disconnect()
+			paint:Disconnect()
+			
+			if newBob then
+				newBob:Destroy()
+			end
+			amb:Destroy()
+		end
+		local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+		local newRooms = 0
+		roomOpning = Rooms.ChildAdded:Connect(function(room)
+			newRooms+= 1
+			if newRooms >= 10 then
+				despawn()
+				roomOpning:Disconnect()
+				roomOpning = nil
+			end
+		end)
+		newBob.Destroying:Once(function()
+			if roomOpning then
+				roomOpning:Disconnect()
+				roomOpning = nil
+			end
+			despawn()
+		end)
+		
+		task.wait(5)
+		db = false
+		
+	end
+	
+	game:GetService("Chat").Chatted:Connect(function(_, msg)
+		if string.lower(msg) == "/spawn bob" then
+			if db == false then
+				activate()
+			end
+		end
+	end)
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v.Chatted:Connect(function(msg)
+			if string.lower(msg) == "/spawn bob" then
+				if db == false then
+					activate()
+				end
+			end
+		end)
+	end
+	game.DescendantAdded:Connect(function(d)
+		if d:IsA("TextLabel") then
+			local msg = d.Text
+			if string.lower(msg) == "/spawn bob" then
+				if db == false then
+					activate()
+				end
+			end
+		end
+	end)
+end)
