@@ -1,4 +1,11 @@
 -- IR ALL IN ONE
+local function getName(str:string)
+	local space, _ = string.find(str, " ")
+	if not space then return string.upper(str) end
+
+	local entName = string.sub(str, 0, space-1)
+	return string.upper(entName)
+end
 local messageStyles = {
 	-- A section
 	["A-5"] = {
@@ -109,6 +116,24 @@ local messageStyles = {
 		}),
 		Image = "rbxassetid://12323974869"
 	},
+	["M-120-B"] = {
+		Name = "M-120",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.85,0.85,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12323974869"
+	},
+	["M-120-C"] = {
+		Name = "M-120",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.85,0.85,0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://12323974869"
+	},
 	["X-120"] = {
 		Name = "X-120",
 		Color = ColorSequence.new({
@@ -174,6 +199,24 @@ local messageStyles = {
 	},
 	["A-278"] = {
 		Name = "A-278",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.75,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11588768740"
+	},
+	["M-278"] = {
+		Name = "M-278",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.new(0.75,0,1)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://11588768740"
+	},
+	["Portal"] = {
+		Name = "Portal",
 		Color = ColorSequence.new({
 			ColorSequenceKeypoint.new(0, Color3.new(0.75,0,1)),
 			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
@@ -272,6 +315,15 @@ local messageStyles = {
 			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
 		}),
 		Image = "rbxassetid://13900550427"
+	},
+	["E-100"] = {
+		Name = "E-22",
+		Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+			ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+		}),
+		Image = "rbxassetid://13033798999"
 	},
 	["E-22"] = {
 		Name = "E-22",
@@ -409,16 +461,9 @@ task.spawn(function()
 	local folder:Folder = workspace.Entities
 
 	folder.ChildAdded:Connect(function(d)
-		if d.Name == "A-5" then
+		if d.Name == "A-5" or d.Name == "A-258" then
 			task.wait(1)
 			d:Destroy()
-		end
-		if d.Name == "A-258" then
-			for i, v in pairs(d:GetDescendants()) do
-				if v:IsA("Sound") then
-					v.Volume = 0
-				end
-			end
 		end
 	end)
 end)
@@ -436,16 +481,6 @@ task.spawn(function()
 
 	folder.ChildAdded:Connect(function(d)
 		Instance.new("Highlight", d)
-		
-		local entName = getName(d.Name)
-		
-		local style = messageStyles[entName]
-		
-		local notification = nil
-
-		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
-			notification = child
-		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -454,8 +489,6 @@ task.spawn(function()
 			Duration = 5,
 			Button1 = "OK",
 		})
-
-		repeat wait() until notification ~= nil
 		
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
 		sound.SoundId = "rbxassetid://2865228231"
@@ -465,26 +498,9 @@ task.spawn(function()
 			sound:Destroy()
 		end)
 		
-		if style then
-			notification.NotificationImage.Image = style.Image
-			notification.BackgroundColor3 = Color3.new(1,1,1)
-			local gradient = Instance.new("UIGradient", notification)
-			gradient.Color = style.Color
-		end
-		
 	end)
 
 	folder.ChildRemoved:Connect(function(d)
-		local entName = getName(d.Name)
-
-		local style = messageStyles[entName]
-
-		local notification = nil
-
-		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
-			notification = child
-		end)
-
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Removing",
 			Text = d.Name .. " Removing",
@@ -493,8 +509,6 @@ task.spawn(function()
 			Button1 = "OK",
 		})
 
-		repeat wait() until notification ~= nil
-
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
 		sound.SoundId = "rbxassetid://2865228231"
 		sound.Volume = 1
@@ -502,36 +516,14 @@ task.spawn(function()
 		sound.Ended:Once(function()
 			sound:Destroy()
 		end)
-
-		if style then
-			notification.NotificationImage.Image = style.Image
-			notification.BackgroundColor3 = Color3.new(1,1,1)
-			local gradient = Instance.new("UIGradient", notification)
-			gradient.Color = style.Color
-		end
 	end)
 end)
 
 task.spawn(function()
-	local function getName(str:string)
-		local space, _ = string.find(str, " ")
-		if not space then return string.upper(str) end
-
-		local entName = string.sub(str, 0, space-1)
-		return string.upper(entName)
-	end
 	local folder:Folder = workspace.Clones
-
+	
 	folder.ChildAdded:Connect(function(d)
-		local entName = getName(d.Name)
-
-		local style = messageStyles[entName]
-
-		local notification = nil
-
-		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
-			notification = child
-		end)
+		Instance.new("Highlight", d)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -541,8 +533,6 @@ task.spawn(function()
 			Button1 = "OK",
 		})
 
-		repeat wait() until notification ~= nil
-
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
 		sound.SoundId = "rbxassetid://2865228231"
 		sound.Volume = 1
@@ -551,25 +541,9 @@ task.spawn(function()
 			sound:Destroy()
 		end)
 
-		if style then
-			notification.NotificationImage.Image = style.Image
-			notification.BackgroundColor3 = Color3.new(1,1,1)
-			local gradient = Instance.new("UIGradient", notification)
-			gradient.Color = style.Color
-		end
 	end)
 
 	folder.ChildRemoved:Connect(function(d)
-		local entName = getName(d.Name)
-
-		local style = messageStyles[entName]
-
-		local notification = nil
-
-		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
-			notification = child
-		end)
-
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Removing",
 			Text = d.Name .. " Removing",
@@ -578,8 +552,6 @@ task.spawn(function()
 			Button1 = "OK",
 		})
 
-		repeat wait() until notification ~= nil
-
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
 		sound.SoundId = "rbxassetid://2865228231"
 		sound.Volume = 1
@@ -587,7 +559,13 @@ task.spawn(function()
 		sound.Ended:Once(function()
 			sound:Destroy()
 		end)
+	end)
+end)
 
+task.spawn(function()
+	game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Connect(function(notification)
+		local entName:string = getName(notification.NotificationTitle.Text)
+		local style = messageStyles[entName]
 		if style then
 			notification.NotificationImage.Image = style.Image
 			notification.BackgroundColor3 = Color3.new(1,1,1)
@@ -645,172 +623,6 @@ task.spawn(function()
 			end
 		end
 	end)
-end)
-
-task.spawn(function()
-	local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
-	
-	local function getLatestRoom()
-		local latestRoom = nil
-		local latestRoomIndex = 0
-
-		for i, room in pairs(Rooms:GetChildren()) do
-			local roomIndex = tonumber(string.sub(room.Name, 11, -1))
-
-			if roomIndex > latestRoomIndex then
-				latestRoom = room
-			end
-		end
-
-		return latestRoom
-	end
-	
-	local connection = nil
-	
-	connection = Rooms.ChildAdded:Connect(function(room)
-		local roomIndex = tonumber(string.sub(room.Name, 11, -1))
-		
-		if roomIndex < 310 then return end
-		
-		connection:Disconnect()
-		connection = nil
-		
-		local rng = Random.new()
-		
-		local strings = {
-			"🧆",
-			"БОБИК 🧆",
-			"БОБ🧆ИК 🧆БОБ 🧆",
-			"Б🧆ИБОБ🧆ИБИК 🧆",
-			"Б🧆 БОБ🧆",
-			"Б🧆Б",
-			"Б🧆БИКБ🧆Б Б🧆БИК",
-			"🧆🧆🧆🧆🧆🧆",
-			"🧆🧆 ОБО БОБИК БОБ БО🧆ОББ🧆ОБ Б🧆Б 🧆",
-			[[БОБИК 🧆🧆🧆 БО🧆ОББ🧆ОБ 🧆🧆 БОБЫ 🧆
-БОБОБ 🧆 БАОб 🧆🧆🧆🧆 Б🧆Б ОБО БОБ БОБИ]]
-		}
-		
-		local function bobify(notification:Frame)
-			notification.Rotation = rng:NextNumber(-5.000, 5.000)
-			notification.Button1.Rotation = rng:NextNumber(-5.000, 5.000)
-			notification.NotificationImage.Rotation = rng:NextNumber(-5.000, 5.000)
-			notification.NotificationText.Rotation = rng:NextNumber(-5.000, 5.000)
-			notification.NotificationTitle.Rotation = rng:NextNumber(-5.000, 5.000)
-			
-			notification.NotificationImage.Image = "rbxassetid://16130573114"
-			notification.Button1.Text = strings[rng:NextInteger(1, #strings)]
-			notification.NotificationText.Text = strings[rng:NextInteger(1, #strings)]
-			notification.NotificationTitle.Text = strings[rng:NextInteger(1, #strings)]			
-		end
-		
-		task.wait(0.5)
-		
-		local notification = nil
-		
-		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
-			notification = child
-		end)
-		
-		game:GetService("StarterGui"):SetCore("SendNotification", {
-			Title = "A-606" .. " Spawned",
-			Text = "A-606" .. " Spawned",
-			Icon = "rbxassetid://10735250756",
-			Duration = 9999999,
-			Button1 = "OK",
-		})
-		
-		repeat wait() until notification ~= nil
-		
-		notification.Interactable = false
-		
-		task.wait(3)
-		
-		local sound = Instance.new("Sound", game.SoundService)
-		sound.SoundId = "rbxassetid://80345507609839"
-		sound.Volume = 5
-		sound:Play()
-		
-		local glitching = nil
-		glitching = game:GetService("RunService").Heartbeat:Connect(function()
-			bobify(notification)
-		end)
-		
-		task.wait(1)
-		sound:Destroy()
-		glitching:Disconnect()
-		glitching = nil
-		
-		local function coverPart(part: BasePart)
-			local DFront = Instance.new("Decal", part)
-			DFront.Texture = "rbxassetid://16130573114"
-			DFront.Face = Enum.NormalId.Front
-
-			local DBack = Instance.new("Decal", part)
-			DBack.Texture = "rbxassetid://16130573114"
-			DBack.Face = Enum.NormalId.Back
-
-			local DBack = Instance.new("Decal", part)
-			DBack.Texture = "rbxassetid://16130573114"
-			DBack.Face = Enum.NormalId.Top
-
-			local DBack = Instance.new("Decal", part)
-			DBack.Texture = "rbxassetid://16130573114"
-			DBack.Face = Enum.NormalId.Bottom
-
-			local DBack = Instance.new("Decal", part)
-			DBack.Texture = "rbxassetid://16130573114"
-			DBack.Face = Enum.NormalId.Left
-
-			local DBack = Instance.new("Decal", part)
-			DBack.Texture = "rbxassetid://16130573114"
-			DBack.Face = Enum.NormalId.Right
-
-		end
-		
-		notification:Destroy()
-		
-		local boom1 = Instance.new("Sound", game:GetService("SoundService"))
-		boom1.SoundId = "rbxassetid://1837830472"
-		boom1.Volume = 0.75
-		
-		local boom2 = Instance.new("Sound", game:GetService("SoundService"))
-		boom2.SoundId = "rbxassetid://1837830402"
-		boom2.Volume = 0.5
-		
-		boom1:Play()
-		boom1.Ended:Once(function()
-			boom1:Destroy()
-		end)
-		
-		if workspace:FindFirstChild("GeneratedRooms") then
-			local latestRoom = getLatestRoom()
-			for i, v in pairs(latestRoom:GetDescendants()) do
-				if v:IsA("BasePart") then
-					coverPart(v)
-				end
-			end
-			Rooms.ChildAdded:Once(function(child)
-				task.wait(0.1)
-				for i, v in pairs(child:GetDescendants()) do
-					if v:IsA("BasePart") then
-						coverPart(v)
-					end
-				end
-			end)
-		end
-		
-		task.wait(2)
-		
-		boom2:Play()
-		boom2.Ended:Once(function()
-			boom2:Destroy()
-		end)
-		
-		
-		
-	end)
-	
 end)
 
 task.spawn(function()
@@ -965,138 +777,144 @@ task.spawn(function()
 
 	end
 	
-	local function activate()
+	local function activate(amount)
 		db = true
-		local active = true
-		local stop = false
-		local newBob:Model = bob:Clone()
-		newBob.Parent = workspace.Entities
-		newBob.Bob.Fire.Playing = true
-		local character:Model = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
-		local hrp:BasePart = character:WaitForChild('HumanoidRootPart')
-		local amb = Instance.new("Sound", game.SoundService)
-		amb.SoundId = "rbxassetid://8270571547"
-		amb.Looped = true
-		Instance.new("DistortionSoundEffect", amb).Level = 0.5
-		amb.Playing = true
-		
-		newBob.Bob.Face.FaceImage.Image = bobfb
-		-- Animate
-		
-		local warperFramerate = 30
-		local lastFrame = 1 
-		local frames = 30 --4*5
-		local rows = 5
-		local columns = 6
+		for i = 1, amount do
+			local active = true
+			local stop = false
+			local newBob:Model = bob:Clone()
+			newBob.Parent = workspace.Entities
+			newBob.Bob.Fire.Playing = true
+			local character:Model = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait()
+			local hrp:BasePart = character:WaitForChild('HumanoidRootPart')
+			local amb = Instance.new("Sound", game.SoundService)
+			amb.SoundId = "rbxassetid://8270571547"
+			amb.Looped = true
+			Instance.new("DistortionSoundEffect", amb).Level = 0.5
+			amb.Playing = true
 
-		local AnimationFrameWrapper = newBob.Bob.Face
+			newBob.Bob.Face.FaceImage.Image = bobfb
+			-- Animate
 
-		local AnimatedSprite = AnimationFrameWrapper.FaceImage 
+			local warperFramerate = 30
+			local lastFrame = 1 
+			local frames = 30 --4*5
+			local rows = 5
+			local columns = 6
 
-		local t = tick() 
+			local AnimationFrameWrapper = newBob.Bob.Face
 
-		AnimatedSprite.Size = UDim2.new(columns,0,rows,0)
+			local AnimatedSprite = AnimationFrameWrapper.FaceImage 
 
-		local function UpdateWarper()
-			if tick()-t >= 1/warperFramerate then 
-				lastFrame = lastFrame + 1
-				if lastFrame > frames then lastFrame = 1 end 
-				local CurrentColumn = lastFrame 
-				local CurrentRow = 1
-				repeat 
-					if CurrentColumn>columns then
-						CurrentColumn = CurrentColumn - columns
-						CurrentRow = CurrentRow + 1
-					end
-				until not(CurrentColumn>columns)
+			local t = tick() 
+
+			AnimatedSprite.Size = UDim2.new(columns,0,rows,0)
+
+			local function UpdateWarper()
+				if tick()-t >= 1/warperFramerate then 
+					lastFrame = lastFrame + 1
+					if lastFrame > frames then lastFrame = 1 end 
+					local CurrentColumn = lastFrame 
+					local CurrentRow = 1
+					repeat 
+						if CurrentColumn>columns then
+							CurrentColumn = CurrentColumn - columns
+							CurrentRow = CurrentRow + 1
+						end
+					until not(CurrentColumn>columns)
 
 
-				AnimationFrameWrapper.FaceImage.Position = UDim2.new(-(CurrentColumn-1),0,-(CurrentRow-1),0)
+					AnimationFrameWrapper.FaceImage.Position = UDim2.new(-(CurrentColumn-1),0,-(CurrentRow-1),0)
 
-				t = tick()
+					t = tick()
+				end
 			end
-		end
 
-		local animation = game:GetService("RunService").Heartbeat:Connect(function()
-			task.spawn(UpdateWarper)
-		end)
-		newBob.Bob.Position = hrp.Position + Vector3.new(100, 1, 100)
-		-- Move
-		local movement = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
-			if not stop then
-				local speed = 15
-				newBob.Bob.CanCollide = false
+			local animation = game:GetService("RunService").Heartbeat:Connect(function()
+				task.spawn(UpdateWarper)
+			end)
+			newBob.Bob.Position = hrp.Position + Vector3.new(100, 1, 100)
+			-- Move
+			local movement = game:GetService("RunService").Heartbeat:Connect(function(deltaTime)
+				if not stop then
+					local speed = 15
+					newBob.Bob.CanCollide = false
 
-				local direction = (hrp.Position - newBob.Bob.Position).Unit
-				local newPosition = newBob.Bob.Position + direction * speed * deltaTime
+					local direction = (hrp.Position - newBob.Bob.Position).Unit
+					local newPosition = newBob.Bob.Position + direction * speed * deltaTime
 
-				local lookAtCFrame = CFrame.new(newPosition, hrp.Position)
+					local lookAtCFrame = CFrame.new(newPosition, hrp.Position)
 
-				local adjustedCFrame = lookAtCFrame * CFrame.Angles(math.rad(90), 0, 0)
+					local adjustedCFrame = lookAtCFrame * CFrame.Angles(math.rad(90), 0, 0)
 
-				newBob.Bob.CFrame = adjustedCFrame
+					newBob.Bob.CFrame = adjustedCFrame
+				end
+			end)
+
+			local paint = newBob.Bob.Touched:Connect(function(hit:BasePart)
+				if hit:IsA("BasePart") and not hit:FindFirstChildWhichIsA("Decal") then
+					coverPart(hit)
+				end
+				if hit.Parent:FindFirstChildWhichIsA("Humanoid") and not stop then
+					stop = true
+					task.delay(1.25, function()
+						stop = false
+					end)
+				end
+			end)
+
+			local function despawn()
+				if not active then return end
+				active = false
+				animation:Disconnect()
+				movement:Disconnect()
+				paint:Disconnect()
+
+				if newBob then
+					newBob:Destroy()
+				end
+				amb:Destroy()
 			end
-		end)
-		
-		local paint = newBob.Bob.Touched:Connect(function(hit:BasePart)
-			if hit:IsA("BasePart") and not hit:FindFirstChildWhichIsA("Decal") then
-				coverPart(hit)
-			end
-			if hit.Parent:FindFirstChildWhichIsA("Humanoid") and not stop then
-				stop = true
-				task.delay(1.25, function()
-					stop = false
-				end)
-			end
-		end)
-		
-		local function despawn()
-			if not active then return end
-			active = false
-			animation:Disconnect()
-			movement:Disconnect()
-			paint:Disconnect()
-			
-			if newBob then
-				newBob:Destroy()
-			end
-			amb:Destroy()
-		end
-		local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
-		local newRooms = 0
-		roomOpning = Rooms.ChildAdded:Connect(function(room)
-			newRooms+= 1
-			if newRooms >= 10 then
+			local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+			local newRooms = 0
+			roomOpning = Rooms.ChildAdded:Connect(function(room)
+				newRooms+= 1
+				if newRooms >= 10 then
+					despawn()
+					roomOpning:Disconnect()
+					roomOpning = nil
+				end
+			end)
+			newBob.Destroying:Once(function()
+				if roomOpning then
+					roomOpning:Disconnect()
+					roomOpning = nil
+				end
 				despawn()
-				roomOpning:Disconnect()
-				roomOpning = nil
-			end
-		end)
-		newBob.Destroying:Once(function()
-			if roomOpning then
-				roomOpning:Disconnect()
-				roomOpning = nil
-			end
-			despawn()
-		end)
-		
-		task.wait(5)
+			end)
+
+			task.wait(5)
+		end
 		db = false
 		
 	end
 	
 	game:GetService("Chat").Chatted:Connect(function(_, msg)
-		if string.lower(msg) == "/spawn bob" then
+		if string.lower(string.sub(msg, 1, 10)) == "/spawn bob" then
 			if db == false then
-				activate()
+				local amount = tonumber(string.sub(msg, 12, -1))
+				if not amount then amount = 1 end
+				activate(amount)
 			end
 		end
 	end)
 	for i, v in pairs(game.Players:GetPlayers()) do
 		v.Chatted:Connect(function(msg)
-			if string.lower(msg) == "/spawn bob" then
+			if string.lower(string.sub(msg, 1, 10)) == "/spawn bob" then
 				if db == false then
-					activate()
+					local amount = tonumber(string.sub(msg, 12, -1))
+					if not amount then amount = 1 end
+					activate(amount)
 				end
 			end
 		end)
@@ -1104,9 +922,216 @@ task.spawn(function()
 	game.DescendantAdded:Connect(function(d)
 		if d:IsA("TextLabel") then
 			local msg = d.Text
-			if string.lower(msg) == "/spawn bob" then
+			if string.lower(string.sub(msg, 1, 10)) == "/spawn bob" then
 				if db == false then
-					activate()
+					local amount = tonumber(string.sub(msg, 12, -1))
+					if not amount then amount = 1 end
+					activate(amount)
+				end
+			end
+		end
+	end)
+end)
+
+task.spawn(function()
+	local activated = false
+
+	local function activate()
+		if activated then return end
+		activated = true
+		
+		local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+
+		local function getLatestRoom()
+			local latestRoom = nil
+			local latestRoomIndex = 0
+			local section = 1
+
+			for i, room in pairs(Rooms:GetChildren()) do
+				local roomSection = string.sub(room.Name, 1, 1)
+				if roomSection == "A" then roomSection = 1 end
+				if roomSection == "E" then roomSection = 2 end
+				if roomSection == "V" then roomSection = 3 end
+				
+				if roomSection > section then
+					section = roomSection
+				end
+				
+				local roomIndex = tonumber(string.sub(room.Name, 11, -1))
+
+				if roomIndex > latestRoomIndex and roomSection >= section then
+					latestRoom = room
+				end
+			end
+
+			return latestRoom
+		end
+
+		local connection = nil
+		
+		local rng = Random.new()
+
+		local strings = {
+			"🧆",
+			"БОБИК 🧆",
+			"БОБ🧆ИК 🧆БОБ 🧆",
+			"Б🧆ИБОБ🧆ИБИК 🧆",
+			"Б🧆 БОБ🧆",
+			"Б🧆Б",
+			"Б🧆БИКБ🧆Б Б🧆БИК",
+			"🧆🧆🧆🧆🧆🧆",
+			"🧆🧆 ОБО БОБИК БОБ БО🧆ОББ🧆ОБ Б🧆Б 🧆",
+			[[БОБИК 🧆🧆🧆 БО🧆ОББ🧆ОБ 🧆🧆 БОБЫ 🧆
+БОБОБ 🧆 БАОб 🧆🧆🧆🧆 Б🧆Б ОБО БОБ БОБИ]]
+		}
+
+		local function bobify(notification:Frame)
+			notification.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.Button1.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationImage.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationText.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationTitle.Rotation = rng:NextNumber(-5.000, 5.000)
+
+			notification.NotificationImage.Image = "rbxassetid://16130573114"
+			notification.Button1.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationText.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationTitle.Text = strings[rng:NextInteger(1, #strings)]			
+		end
+
+		task.wait(0.5)
+
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-606" .. " Spawned",
+			Text = "A-606" .. " Spawned",
+			Icon = "rbxassetid://10735250756",
+			Duration = 9999999,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+
+		notification.Interactable = false
+
+		task.wait(3)
+
+		local sound = Instance.new("Sound", game.SoundService)
+		sound.SoundId = "rbxassetid://80345507609839"
+		sound.Volume = 5
+		sound:Play()
+
+		local glitching = nil
+		glitching = game:GetService("RunService").Heartbeat:Connect(function()
+			bobify(notification)
+		end)
+
+		task.wait(1)
+		sound:Destroy()
+		glitching:Disconnect()
+		glitching = nil
+
+		local function coverPart(part: BasePart)
+			local DFront = Instance.new("Decal", part)
+			DFront.Texture = "rbxassetid://16130573114"
+			DFront.Face = Enum.NormalId.Front
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Back
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Top
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Bottom
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Left
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Right
+
+		end
+
+		notification:Destroy()
+
+		local boom1 = Instance.new("Sound", game:GetService("SoundService"))
+		boom1.SoundId = "rbxassetid://1837830472"
+		boom1.Volume = 0.75
+
+		local boom2 = Instance.new("Sound", game:GetService("SoundService"))
+		boom2.SoundId = "rbxassetid://1837830402"
+		boom2.Volume = 0.5
+
+		boom1:Play()
+		boom1.Ended:Once(function()
+			boom1:Destroy()
+		end)
+
+		if workspace:FindFirstChild("GeneratedRooms") then
+			local latestRoom = getLatestRoom()
+			for i, v in pairs(latestRoom:GetDescendants()) do
+				if v:IsA("BasePart") then
+					coverPart(v)
+				end
+			end
+			local times = 0
+			con = Rooms.ChildAdded:Connect(function(child)
+				times +=1
+				if times >= 5 then
+					con:Disconnect()
+				end
+				task.wait(0.1)
+				for i, v in pairs(child:GetDescendants()) do
+					if v:IsA("BasePart") then
+						coverPart(v)
+					end
+				end
+			end)
+		end
+
+		task.wait(2)
+
+		boom2:Play()
+		boom2.Ended:Once(function()
+			boom2:Destroy()
+		end)
+		
+		task.wait(2.5)
+		activated = false
+	end
+
+	game:GetService("Chat").Chatted:Connect(function(_, msg)
+		if string.lower(msg) == "bobik" then
+			if activated == false then
+				task.spawn(activate)
+			end
+		end
+	end)
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v.Chatted:Connect(function(msg)
+			if string.lower(msg) == "bobik" then
+				if activated == false then
+					task.spawn(activate)
+				end
+			end
+		end)
+	end
+	game.DescendantAdded:Connect(function(d)
+		if d:IsA("TextLabel") then
+			local msg = d.Text
+			if string.lower(msg) == "bobik" then
+				if activated == false then
+					task.spawn(activate)
 				end
 			end
 		end
