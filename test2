@@ -450,6 +450,61 @@ end)
 local savedEntities = Instance.new("Folder", game)
 savedEntities.Name = "SavedEntities"
 
+local player = game:GetService("Players").LocalPlayer
+
+local function espEntity(entity:Model)
+	local ESP = Instance.new("BillboardGui")
+	local Text = Instance.new("TextLabel")
+
+	--Properties:
+	local adornee:BasePart = entity:FindFirstChild("HumanoidRootPart") or entity:FindFirstChildWhichIsA("BasePart")
+
+	ESP.Name = "ESP"
+	ESP.Parent = adornee
+	ESP.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ESP.Active = true
+	ESP.Adornee = adornee
+	ESP.AlwaysOnTop = true
+	ESP.LightInfluence = 1.000
+	ESP.Size = UDim2.new(0, 150, 0, 50)
+
+	Text.Name = "Text"
+	Text.Parent = ESP
+	Text.AnchorPoint = Vector2.new(0.5, 0.5)
+	Text.BackgroundTransparency = 1.000
+	Text.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Text.BorderSizePixel = 0
+	Text.Position = UDim2.new(0.5, 0, 0.5, 0)
+	Text.Size = UDim2.new(1, 0, 1, 0)
+	Text.Font = Enum.Font.Michroma
+	Text.Text = ""
+	Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Text.TextScaled = true
+	Text.TextSize = 14.000
+	Text.TextWrapped = true
+	
+	local color = nil
+	for i, v in pairs(entity:GetDescendants()) do
+		if v:IsA('PointLight') then
+			color = v.Color
+			break
+		end
+	end
+	if color then
+		Text.TextColor3 = color
+	end
+	
+	while entity do
+		local char = player.Character or player.CharacterAdded:Wait()
+		local hrp:BasePart = char:WaitForChild("HumanoidRootPart")
+		
+		local distance = (hrp.Position - adornee.Position).Magnitude
+		
+		Text.Text = entity.Name .. "\n" .. tostring(distance) .. " studs"
+		task.wait()
+	end
+end
+
 task.spawn(function()
 	while task.wait(1) do
 		for i, v in pairs(workspace:GetDescendants()) do
@@ -499,6 +554,10 @@ task.spawn(function()
 				end
 			end
 		end
+		
+		task.spawn(function()
+			espEntity(d)
+		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
