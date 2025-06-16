@@ -96,8 +96,8 @@ function spawnRandom()
 end
 
 Rooms.ChildAdded:Connect(function()
-	if rng:NextInteger(1, 5) == 1 then
-		task.delay(rng:NextNumber(0, 2), spawnRandom)
+	if rng:NextInteger(1, 4) == 1 then
+		task.delay(rng:NextNumber(0, 0.25), spawnRandom)
 	end
 end)
 
