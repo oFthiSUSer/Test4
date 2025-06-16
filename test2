@@ -447,6 +447,36 @@ task.defer(function()
 	})
 end)
 
+local function LoadCustomAsset(url: string)
+	if getcustomasset then
+		if url:lower():sub(1, 4) == "http" then
+			local fileName = `temp_{tick()}.txt`
+			writefile(fileName, game:HttpGet(url))
+			local result = getcustomasset(fileName, true)
+			delfile(fileName)
+			return result
+
+		elseif isfile(url) then
+			return getcustomasset(url, true)
+		end
+	else
+		warn("Executor doesn't support 'getcustomasset', rbxassetid only.")
+	end
+	if url:find("rbxassetid") or tonumber(url) then
+		return "rbxassetid://"..url:match("%d+")
+	end
+	error(debug.traceback("Failed to load custom asset for:\n"..url))
+end
+
+local function LoadCustomInstance(url: string)
+	local success, result = pcall(function()
+		return game:GetObjects(LoadCustomAsset(url))[1]
+	end)
+	if success then
+		return result
+	end
+end
+
 local savedEntities = Instance.new("Folder", game)
 savedEntities.Name = "SavedEntities"
 
@@ -500,7 +530,7 @@ local function espEntity(entity:Model)
 		
 		local distance = (hrp.Position - adornee.Position).Magnitude
 		
-		Text.Text = entity.Name .. "\n" .. tostring(distance) .. " studs"
+		Text.Text = entity.Name .. "\n" .. tostring(math.round(distance)) .. " studs"
 		task.wait()
 	end
 end
@@ -568,7 +598,7 @@ task.spawn(function()
 		})
 
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
-		sound.SoundId = "rbxassetid://2865228231"
+		sound.SoundId = LoadCustomAsset("https://github.com/oFthiSUSer/Test4/raw/refs/heads/main/Error.mp3")
 		sound.Volume = 1
 		sound:Play()
 		sound.Ended:Once(function()
@@ -607,7 +637,7 @@ task.spawn(function()
 			local ent = d:Clone()
 			ent.Parent = savedEntities
 			for i, v in pairs(ent:GetDescendants()) do
-				if v:IsA("BaseScript") then
+				if v:IsA("Script") or v:IsA("LocalScript") then
 					v:Destroy()
 				end
 				if v:IsA("Sound") then
@@ -625,7 +655,7 @@ task.spawn(function()
 		})
 
 		local sound = Instance.new("Sound", game:GetService('SoundService'))
-		sound.SoundId = "rbxassetid://2865228231"
+		sound.SoundId = LoadCustomAsset("https://github.com/oFthiSUSer/Test4/raw/refs/heads/main/Error.mp3")
 		sound.Volume = 1
 		sound:Play()
 		sound.Ended:Once(function()
@@ -721,39 +751,6 @@ task.spawn(function()
 			end
 		end
 	end
-end)
-
-task.spawn(function()
-	local hl = Instance.new("Highlight")
-	hl.FillColor = Color3.new(0,1,0)
-	hl.FillTransparency = 0.5
-	hl.OutlineColor = Color3.new(1,1,1)
-	hl.OutlineTransparency = 0.75
-
-	local highlights = {}
-
-	local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
-
-	Rooms.ChildAdded:Connect(function(room)
-		for i, v in pairs(highlights) do
-			v:Destroy()
-		end
-		highlights = {}
-
-		for i, v in pairs(room:GetChildren()) do
-			local hasProximityPrompt = false
-			for i, d in pairs(v:GetDescendants()) do
-				if d:IsA('ProximityPrompt') then
-					hasProximityPrompt = true
-				end
-			end
-			if hasProximityPrompt then
-				local highlight = hl:Clone()
-				highlight.Parent = v
-				table.insert(highlights, highlight)
-			end
-		end
-	end)
 end)
 
 task.spawn(function()
