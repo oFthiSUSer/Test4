@@ -95,6 +95,8 @@ function spawnRandom()
 	Remote:FireServer(randomEntitiy)
 end
 
+repeat wait() until #Rooms:GetChildren() >= 10
+
 Rooms.ChildAdded:Connect(function()
 	if rng:NextInteger(1, 4) == 1 then
 		task.delay(rng:NextNumber(0, 0.25), spawnRandom)
