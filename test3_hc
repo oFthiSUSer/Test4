@@ -87,6 +87,7 @@ B-120
 E-100
 E-230
 E-387
+E-300
 V-110]]
 
 local Entities = string.split(EntitiesList, "\n")
