@@ -596,7 +596,7 @@ task.spawn(function()
 				end
 			end
 			if not color then color = Color3.new(0,0,0) end
-			local entity = {
+			local newStyle = {
 				Name = getName(d.Name),
 				Color = ColorSequence.new({
 					ColorSequenceKeypoint.new(0, color),
@@ -605,7 +605,7 @@ task.spawn(function()
 				}),
 				Image = imageId
 			}
-			table.insert(messageStyles, entity)
+			table.insert(messageStyles, newStyle)
 		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -651,6 +651,44 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 
 		task.wait()
+		task.spawn(function()
+			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+			if not d then return end
+			espEntity(d)
+			local imageId = "rbxassetid://10735250756"
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA('ImageLabel') then
+					imageId = v.Image
+					break
+				end
+			end
+			if imageId == "rbxassetid://10735250756" then
+				for i, v in pairs(d:GetDescendants()) do
+					if v:IsA('ParticleEmitter') then
+						imageId = v.Texture
+						break
+					end
+				end
+			end
+			local color = nil
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA('PointLight') then
+					color = v.Color
+					break
+				end
+			end
+			if not color then color = Color3.new(0,0,0) end
+			local newStyle = {
+				Name = getName(d.Name),
+				Color = ColorSequence.new({
+					ColorSequenceKeypoint.new(0, color),
+					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+				}),
+				Image = imageId
+			}
+			table.insert(messageStyles, newStyle)
+		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
