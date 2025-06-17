@@ -597,7 +597,7 @@ task.spawn(function()
 			end
 			if not color then color = Color3.new(0,0,0) end
 			local entity = {
-				Name = d.Name,
+				Name = getName(d.Name),
 				Color = ColorSequence.new({
 					ColorSequenceKeypoint.new(0, color),
 					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
@@ -707,10 +707,12 @@ task.spawn(function()
 			local gradient = Instance.new("UIGradient", notification)
 			gradient.Color = style.Color
 		else
-			print("AD")
 			-- Auto-Detect
 			local imageId = "rbxassetid://10735250756"
-			local entity = workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
+			local entity:Model = workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Clones:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
+			if not entity then return end
+			print("AD")
+			repeat wait() until not entity or entity:FindFirstChildWhichIsA("BasePart")
 			if not entity then return end
 			for i, v in pairs(entity:GetDescendants()) do
 				if v:IsA('ImageLabel') then
@@ -744,8 +746,21 @@ task.spawn(function()
 					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
 					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
 				})
+			else
+				color = Color3.new(0,0,0)
 			end
 			notification.NotificationImage.Image = imageId
+			if not color then color = Color3.new(0,0,0) end
+			local newStyle = {
+				Name = getName(entity.Name),
+				Color = ColorSequence.new({
+					ColorSequenceKeypoint.new(0, color),
+					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+				}),
+				Image = imageId
+			}
+			table.insert(messageStyles, entity)
 		end
 	end)
 end)
