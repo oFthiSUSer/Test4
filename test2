@@ -768,7 +768,6 @@ task.spawn(function()
 		local style = messageStyles[entName]
 		if not style then
 			for i, c in pairs(messageStyles) do
-				print(type(c))
 				if c.Name and c.Name == entName then
 					style = c
 					break
@@ -776,6 +775,7 @@ task.spawn(function()
 			end
 		end
 		print(style ~= nil)
+		print(type(style))
 		if style then
 			notification.NotificationImage.Image = style.Image
 			notification.BackgroundColor3 = Color3.new(1,1,1)
