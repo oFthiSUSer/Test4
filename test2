@@ -593,9 +593,9 @@ task.spawn(function()
 			end
 			
 			local imageId = "rbxassetid://10735250756"
-			for i, v in pairs(d:GetDescendants()) do
-				if v:IsA('ImageLabel') then
-					imageId = v.Image
+			for i, l in pairs(d:GetDescendants()) do
+				if l:IsA('ImageLabel') then
+					imageId = l.Image
 					break
 				end
 			end
@@ -767,9 +767,10 @@ task.spawn(function()
 		print("ENT NAME: " .. entName)
 		local style = messageStyles[entName]
 		if not style then
-			for i, v in pairs(messageStyles) do
-				if v.Name and v.Name == entName then
-					style = v
+			for i, c in pairs(messageStyles) do
+				print(type(c))
+				if c.Name and c.Name == entName then
+					style = c
 					break
 				end
 			end
@@ -788,17 +789,17 @@ task.spawn(function()
 			print("AD")
 			repeat wait() until not entity or entity:FindFirstChildWhichIsA("BasePart")
 			if not entity then return end
-			for i, v in pairs(entity:GetDescendants()) do
-				if v:IsA('ImageLabel') then
-					imageId = v.Image
+			for i, s in pairs(entity:GetDescendants()) do
+				if s:IsA('ImageLabel') then
+					imageId = s.Image
 					break
 				end
 			end
 			print(imageId == "rbxassetid://10735250756")
 			if imageId == "rbxassetid://10735250756" then
-				for i, v in pairs(entity:GetDescendants()) do
-					if v:IsA('ParticleEmitter') then
-						imageId = v.Texture
+				for i, a in pairs(entity:GetDescendants()) do
+					if a:IsA('ParticleEmitter') then
+						imageId = a.Texture
 						break
 					end
 				end
