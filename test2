@@ -571,9 +571,20 @@ task.spawn(function()
 
 	folder.ChildAdded:Connect(function(d)
 		task.wait()
-
-		repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+		local loaded = false
+		
+		while not loaded do
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA("BasePart") then
+					loaded = true
+					break
+				end
+			end
+			task.wait()
+		end
+		
 		if not d then return end
+		
 		espEntity(d)
 		if not savedEntitiesFolder:FindFirstChild(d.Name) then
 			local saved = d:Clone()
@@ -610,6 +621,7 @@ task.spawn(function()
 	end)
 
 	folder.ChildRemoved:Connect(function(d)
+		
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Removing",
 			Text = d.Name .. " Removing",
@@ -634,8 +646,20 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 
 		task.wait()
-		repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+		local loaded = false
+
+		while not loaded do
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA("BasePart") then
+					loaded = true
+					break
+				end
+			end
+			task.wait()
+		end
+
 		if not d then return end
+
 		espEntity(d)
 		if not savedEntitiesFolder:FindFirstChild(d.Name) then
 			local saved = d:Clone()
