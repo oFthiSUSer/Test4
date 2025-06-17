@@ -732,9 +732,9 @@ task.spawn(function()
 		local entName:string = getName(notification.NotificationTitle.Text)
 		print("ENT NAME: " .. entName)
 		print(messageStyles)
-		for i, v in pairs(messageStyles) do
+		for i, s in pairs(messageStyles) do
 			print("----------")
-			for i, g in pairs(v) do
+			for i, g in pairs(s) do
 				print(g)
 			end
 			print("----------")
