@@ -572,60 +572,24 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 		task.wait()
 
-		task.spawn(function()
-			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
-			if not d then return end
-			espEntity(d)
-			if not savedEntitiesFolder:FindFirstChild(d.Name) then
-				local saved = d:Clone()
-				for i, wa in pairs(saved) do
-					if wa:IsA("Script") then
-						wa:Destroy()
-					end
-					if wa:IsA("Sound") then
-						wa.Playing = false
-					end
-					if wa:IsA("BasePart") then
-						wa.Anchored = true
-					end
+		repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+		if not d then return end
+		espEntity(d)
+		if not savedEntitiesFolder:FindFirstChild(d.Name) then
+			local saved = d:Clone()
+			for i, wa in pairs(saved) do
+				if wa:IsA("Script") then
+					wa:Destroy()
 				end
-				saved.Parent = savedEntitiesFolder
-			end
-			
-			local imageId = "rbxassetid://10735250756"
-			for i, l in pairs(d:GetDescendants()) do
-				if l:IsA('ImageLabel') then
-					imageId = l.Image
-					break
+				if wa:IsA("Sound") then
+					wa.Playing = false
+				end
+				if wa:IsA("BasePart") then
+					wa.Anchored = true
 				end
 			end
-			if imageId == "rbxassetid://10735250756" then
-				for i, v in pairs(d:GetDescendants()) do
-					if v:IsA('ParticleEmitter') then
-						imageId = v.Texture
-						break
-					end
-				end
-			end
-			local color = nil
-			for i, v in pairs(d:GetDescendants()) do
-				if v:IsA('PointLight') then
-					color = v.Color
-					break
-				end
-			end
-			if not color then color = Color3.new(0,0,0) end
-			local newStyle = {
-				Name = getName(d.Name),
-				Color = ColorSequence.new({
-					ColorSequenceKeypoint.new(0, color),
-					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
-					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
-				}),
-				Image = imageId
-			}
-			table.insert(messageStyles, newStyle)
-		end)
+			saved.Parent = savedEntitiesFolder
+		end
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -670,59 +634,24 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 
 		task.wait()
-		task.spawn(function()
-			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
-			if not d then return end
-			espEntity(d)
-			if not savedEntitiesFolder:FindFirstChild(d.Name) then
-				local saved = d:Clone()
-				for i, wa in pairs(saved) do
-					if wa:IsA("Script") then
-						wa:Destroy()
-					end
-					if wa:IsA("Sound") then
-						wa.Playing = false
-					end
-					if wa:IsA("BasePart") then
-						wa.Anchored = true
-					end
+		repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+		if not d then return end
+		espEntity(d)
+		if not savedEntitiesFolder:FindFirstChild(d.Name) then
+			local saved = d:Clone()
+			for i, wa in pairs(saved) do
+				if wa:IsA("Script") then
+					wa:Destroy()
 				end
-				saved.Parent = savedEntitiesFolder
-			end
-			local imageId = "rbxassetid://10735250756"
-			for i, v in pairs(d:GetDescendants()) do
-				if v:IsA('ImageLabel') then
-					imageId = v.Image
-					break
+				if wa:IsA("Sound") then
+					wa.Playing = false
+				end
+				if wa:IsA("BasePart") then
+					wa.Anchored = true
 				end
 			end
-			if imageId == "rbxassetid://10735250756" then
-				for i, v in pairs(d:GetDescendants()) do
-					if v:IsA('ParticleEmitter') then
-						imageId = v.Texture
-						break
-					end
-				end
-			end
-			local color = nil
-			for i, v in pairs(d:GetDescendants()) do
-				if v:IsA('PointLight') then
-					color = v.Color
-					break
-				end
-			end
-			if not color then color = Color3.new(0,0,0) end
-			local newStyle = {
-				Name = getName(d.Name),
-				Color = ColorSequence.new({
-					ColorSequenceKeypoint.new(0, color),
-					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
-					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
-				}),
-				Image = imageId
-			}
-			table.insert(messageStyles, newStyle)
-		end)
+			saved.Parent = savedEntitiesFolder
+		end
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -766,14 +695,6 @@ task.spawn(function()
 		local entName:string = getName(notification.NotificationTitle.Text)
 		print("ENT NAME: " .. entName)
 		local style = messageStyles[entName]
-		if not style then
-			for i, c in pairs(messageStyles) do
-				if c.Name and c.Name == entName then
-					style = c
-					break
-				end
-			end
-		end
 		print(style ~= nil)
 		print(type(style))
 		if style then
