@@ -447,6 +447,9 @@ task.defer(function()
 	})
 end)
 
+local savedEntitiesFolder = Instance.new("Folder", game)
+savedEntitiesFolder.Name = "SavedEntities"
+
 local function LoadCustomAsset(url: string)
 	if getcustomasset then
 		if url:lower():sub(1, 4) == "http" then
@@ -573,6 +576,22 @@ task.spawn(function()
 			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
 			if not d then return end
 			espEntity(d)
+			if not savedEntitiesFolder:FindFirstChild(d.Name) then
+				local saved = d:Clone()
+				for i, wa in pairs(saved) do
+					if wa:IsA("Script") then
+						wa:Destroy()
+					end
+					if wa:IsA("Sound") then
+						wa.Playing = false
+					end
+					if wa:IsA("BasePart") then
+						wa.Anchored = true
+					end
+				end
+				saved.Parent = savedEntitiesFolder
+			end
+			
 			local imageId = "rbxassetid://10735250756"
 			for i, v in pairs(d:GetDescendants()) do
 				if v:IsA('ImageLabel') then
@@ -655,6 +674,21 @@ task.spawn(function()
 			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
 			if not d then return end
 			espEntity(d)
+			if not savedEntitiesFolder:FindFirstChild(d.Name) then
+				local saved = d:Clone()
+				for i, wa in pairs(saved) do
+					if wa:IsA("Script") then
+						wa:Destroy()
+					end
+					if wa:IsA("Sound") then
+						wa.Playing = false
+					end
+					if wa:IsA("BasePart") then
+						wa.Anchored = true
+					end
+				end
+				saved.Parent = savedEntitiesFolder
+			end
 			local imageId = "rbxassetid://10735250756"
 			for i, v in pairs(d:GetDescendants()) do
 				if v:IsA('ImageLabel') then
@@ -731,14 +765,6 @@ task.spawn(function()
 	game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Connect(function(notification)
 		local entName:string = getName(notification.NotificationTitle.Text)
 		print("ENT NAME: " .. entName)
-		print(messageStyles)
-		for i, s in pairs(messageStyles) do
-			print("----------")
-			for i, g in pairs(s) do
-				print(g)
-			end
-			print("----------")
-		end
 		local style = messageStyles[entName]
 		if not style then
 			for i, v in pairs(messageStyles) do
@@ -748,6 +774,7 @@ task.spawn(function()
 				end
 			end
 		end
+		print(style ~= nil)
 		if style then
 			notification.NotificationImage.Image = style.Image
 			notification.BackgroundColor3 = Color3.new(1,1,1)
@@ -756,7 +783,7 @@ task.spawn(function()
 		else
 			-- Auto-Detect
 			local imageId = "rbxassetid://10735250756"
-			local entity:Model = workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Clones:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
+			local entity:Model = savedEntitiesFolder:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Clones:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
 			if not entity then return end
 			print("AD")
 			repeat wait() until not entity or entity:FindFirstChildWhichIsA("BasePart")
