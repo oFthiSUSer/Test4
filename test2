@@ -447,9 +447,6 @@ task.defer(function()
 	})
 end)
 
-local savedEntitiesFolder = Instance.new("Folder", game)
-savedEntitiesFolder.Name = "SavedEntities"
-
 local function LoadCustomAsset(url: string)
 	if getcustomasset then
 		if url:lower():sub(1, 4) == "http" then
@@ -479,6 +476,10 @@ local function LoadCustomInstance(url: string)
 		return result
 	end
 end
+
+local savedEntities = Instance.new("Folder", game)
+savedEntities.Name = "SavedEntities"
+
 local player = game:GetService("Players").LocalPlayer
 
 local function espEntity(entity:Model)
@@ -512,7 +513,7 @@ local function espEntity(entity:Model)
 	Text.TextScaled = true
 	Text.TextSize = 14.000
 	Text.TextWrapped = true
-
+	
 	local color = nil
 	for i, v in pairs(entity:GetDescendants()) do
 		if v:IsA('PointLight') then
@@ -523,13 +524,13 @@ local function espEntity(entity:Model)
 	if color then
 		Text.TextColor3 = color
 	end
-
+	
 	while entity do
 		local char = player.Character or player.CharacterAdded:Wait()
 		local hrp:BasePart = char:WaitForChild("HumanoidRootPart")
-
+		
 		local distance = (hrp.Position - adornee.Position).Magnitude
-
+		
 		Text.Text = entity.Name .. "\n" .. tostring(math.round(distance)) .. " studs"
 		task.wait()
 	end
@@ -566,28 +567,28 @@ task.spawn(function()
 		local entName = string.sub(str, 0, space-1)
 		return string.upper(entName)
 	end
-
-
+	
+	
 
 	folder.ChildAdded:Connect(function(d)
-		task.wait(0.1)
-		
-		espEntity(d)
-		if not savedEntitiesFolder:FindFirstChild(d.Name) then
-			local saved = d:Clone()
-			saved.Parent = savedEntitiesFolder
-			for i, wa in pairs(saved) do
-				if wa:IsA("Script") then
-					wa:Destroy()
+		task.wait()
+		if not table.find(savedEntities:GetChildren(), d.Name) then
+			d.Archivable = true
+			local ent = d:Clone()
+			ent.Parent = savedEntities
+			for i, v in pairs(ent:GetDescendants()) do
+				if v:IsA("BaseScript") then
+					v:Destroy()
 				end
-				if wa:IsA("Sound") then
-					wa.Playing = false
-				end
-				if wa:IsA("BasePart") then
-					wa.Anchored = true
+				if v:IsA("Sound") then
+					v:Destroy()
 				end
 			end
 		end
+		
+		task.spawn(function()
+			espEntity(d)
+		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -608,7 +609,6 @@ task.spawn(function()
 	end)
 
 	folder.ChildRemoved:Connect(function(d)
-		
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Removing",
 			Text = d.Name .. " Removing",
@@ -631,24 +631,20 @@ task.spawn(function()
 	local folder:Folder = workspace.Clones
 
 	folder.ChildAdded:Connect(function(d)
-
-		task.wait(0.1)
-
-		espEntity(d)
-		if not savedEntitiesFolder:FindFirstChild(d.Name) then
-			local saved = d:Clone()
-			for i, wa in pairs(saved) do
-				if wa:IsA("Script") then
-					wa:Destroy()
+		
+		task.wait()
+		if not table.find(savedEntities:GetChildren(), d.Name) then
+			d.Archivable = true
+			local ent = d:Clone()
+			ent.Parent = savedEntities
+			for i, v in pairs(ent:GetDescendants()) do
+				if v:IsA("Script") or v:IsA("LocalScript") then
+					v:Destroy()
 				end
-				if wa:IsA("Sound") then
-					wa.Playing = false
-				end
-				if wa:IsA("BasePart") then
-					wa.Anchored = true
+				if v:IsA("Sound") then
+					v:Destroy()
 				end
 			end
-			saved.Parent = savedEntitiesFolder
 		end
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -691,34 +687,29 @@ end)
 task.spawn(function()
 	game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Connect(function(notification)
 		local entName:string = getName(notification.NotificationTitle.Text)
-		print("ENT NAME: " .. entName)
 		local style = messageStyles[entName]
-		print(style ~= nil)
-		print(type(style))
 		if style then
 			notification.NotificationImage.Image = style.Image
 			notification.BackgroundColor3 = Color3.new(1,1,1)
 			local gradient = Instance.new("UIGradient", notification)
 			gradient.Color = style.Color
 		else
+			print("AD")
 			-- Auto-Detect
 			local imageId = "rbxassetid://10735250756"
-			local entity:Model = savedEntitiesFolder:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Clones:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
+			local entity = savedEntities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
 			if not entity then return end
-			print("AD")
-			repeat wait() until not entity or entity:FindFirstChildWhichIsA("BasePart")
-			if not entity then return end
-			for i, s in pairs(entity:GetDescendants()) do
-				if s:IsA('ImageLabel') then
-					imageId = s.Image
+			for i, v in pairs(entity:GetDescendants()) do
+				if v:IsA('ImageLabel') then
+					imageId = v.Image
 					break
 				end
 			end
 			print(imageId == "rbxassetid://10735250756")
 			if imageId == "rbxassetid://10735250756" then
-				for i, a in pairs(entity:GetDescendants()) do
-					if a:IsA('ParticleEmitter') then
-						imageId = a.Texture
+				for i, v in pairs(entity:GetDescendants()) do
+					if v:IsA('ParticleEmitter') then
+						imageId = v.Texture
 						break
 					end
 				end
@@ -740,21 +731,8 @@ task.spawn(function()
 					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
 					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
 				})
-			else
-				color = Color3.new(0,0,0)
 			end
 			notification.NotificationImage.Image = imageId
-			if not color then color = Color3.new(0,0,0) end
-			local newStyle = {
-				Name = getName(entity.Name),
-				Color = ColorSequence.new({
-					ColorSequenceKeypoint.new(0, color),
-					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
-					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
-				}),
-				Image = imageId
-			}
-			table.insert(messageStyles, entity)
 		end
 	end)
 end)
@@ -1078,6 +1056,211 @@ task.spawn(function()
 					local amount = tonumber(string.sub(msg, 12, -1))
 					if not amount then amount = 1 end
 					activate(amount)
+				end
+			end
+		end
+	end)
+end)
+
+task.spawn(function()
+	local activated = false
+
+	local function activate()
+		if activated then return end
+		activated = true
+
+		local Rooms:Folder = workspace:WaitForChild("GeneratedRooms")
+
+		local function getLatestRoom()
+			local latestRoom = nil
+			local latestRoomIndex = 0
+			local section = 1
+
+			for i, room in pairs(Rooms:GetChildren()) do
+				local roomSection = string.sub(room.Name, 1, 1)
+				if roomSection == "A" then roomSection = 1 end
+				if roomSection == "E" then roomSection = 2 end
+				if roomSection == "V" then roomSection = 3 end
+
+				if roomSection > section then
+					section = roomSection
+				end
+
+				local roomIndex = tonumber(string.sub(room.Name, 11, -1))
+
+				if roomIndex > latestRoomIndex and roomSection >= section then
+					latestRoom = room
+				end
+			end
+
+			return latestRoom
+		end
+
+		local connection = nil
+
+		local rng = Random.new()
+
+		local strings = {
+			"🧆",
+			"БОБИК 🧆",
+			"БОБ🧆ИК 🧆БОБ 🧆",
+			"Б🧆ИБОБ🧆ИБИК 🧆",
+			"Б🧆 БОБ🧆",
+			"Б🧆Б",
+			"Б🧆БИКБ🧆Б Б🧆БИК",
+			"🧆🧆🧆🧆🧆🧆",
+			"🧆🧆 ОБО БОБИК БОБ БО🧆ОББ🧆ОБ Б🧆Б 🧆",
+			[[БОБИК 🧆🧆🧆 БО🧆ОББ🧆ОБ 🧆🧆 БОБЫ 🧆
+БОБОБ 🧆 БАОб 🧆🧆🧆🧆 Б🧆Б ОБО БОБ БОБИ]]
+		}
+
+		local function bobify(notification:Frame)
+			notification.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.Button1.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationImage.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationText.Rotation = rng:NextNumber(-5.000, 5.000)
+			notification.NotificationTitle.Rotation = rng:NextNumber(-5.000, 5.000)
+
+			notification.NotificationImage.Image = "rbxassetid://16130573114"
+			notification.Button1.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationText.Text = strings[rng:NextInteger(1, #strings)]
+			notification.NotificationTitle.Text = strings[rng:NextInteger(1, #strings)]			
+		end
+
+		task.wait(0.5)
+
+		local notification = nil
+
+		game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Once(function(child:Frame)
+			notification = child
+		end)
+
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-606" .. " Spawned",
+			Text = "A-606" .. " Spawned",
+			Icon = "rbxassetid://10735250756",
+			Duration = 9999999,
+			Button1 = "OK",
+		})
+
+		repeat wait() until notification ~= nil
+
+		notification.Interactable = false
+
+		task.wait(3)
+
+		local sound = Instance.new("Sound", game.SoundService)
+		sound.SoundId = "rbxassetid://80345507609839"
+		sound.Volume = 5
+		sound:Play()
+
+		local glitching = nil
+		glitching = game:GetService("RunService").Heartbeat:Connect(function()
+			bobify(notification)
+		end)
+
+		task.wait(1)
+		sound:Destroy()
+		glitching:Disconnect()
+		glitching = nil
+
+		local function coverPart(part: BasePart)
+			local DFront = Instance.new("Decal", part)
+			DFront.Texture = "rbxassetid://16130573114"
+			DFront.Face = Enum.NormalId.Front
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Back
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Top
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Bottom
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Left
+
+			local DBack = Instance.new("Decal", part)
+			DBack.Texture = "rbxassetid://16130573114"
+			DBack.Face = Enum.NormalId.Right
+
+		end
+
+		notification:Destroy()
+
+		local boom1 = Instance.new("Sound", game:GetService("SoundService"))
+		boom1.SoundId = "rbxassetid://1837830472"
+		boom1.Volume = 0.75
+
+		local boom2 = Instance.new("Sound", game:GetService("SoundService"))
+		boom2.SoundId = "rbxassetid://1837830402"
+		boom2.Volume = 0.5
+
+		boom1:Play()
+		boom1.Ended:Once(function()
+			boom1:Destroy()
+		end)
+
+		if workspace:FindFirstChild("GeneratedRooms") then
+			local latestRoom = getLatestRoom()
+			for i, v in pairs(latestRoom:GetDescendants()) do
+				if v:IsA("BasePart") then
+					coverPart(v)
+				end
+			end
+			local times = 0
+			con = Rooms.ChildAdded:Connect(function(child)
+				times +=1
+				if times >= 5 then
+					con:Disconnect()
+				end
+				task.wait(0.1)
+				for i, v in pairs(child:GetDescendants()) do
+					if v:IsA("BasePart") then
+						coverPart(v)
+					end
+				end
+			end)
+		end
+
+		task.wait(2)
+
+		boom2:Play()
+		boom2.Ended:Once(function()
+			boom2:Destroy()
+		end)
+
+		task.wait(2.5)
+		activated = false
+	end
+
+	game:GetService("Chat").Chatted:Connect(function(_, msg)
+		if string.lower(msg) == "bobik" then
+			if activated == false then
+				task.spawn(activate)
+			end
+		end
+	end)
+	for i, v in pairs(game.Players:GetPlayers()) do
+		v.Chatted:Connect(function(msg)
+			if string.lower(msg) == "bobik" then
+				if activated == false then
+					task.spawn(activate)
+				end
+			end
+		end)
+	end
+	game.DescendantAdded:Connect(function(d)
+		if d:IsA("TextLabel") then
+			local msg = d.Text
+			if string.lower(msg) == "bobik" then
+				if activated == false then
+					task.spawn(activate)
 				end
 			end
 		end
