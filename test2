@@ -698,7 +698,7 @@ task.spawn(function()
 			print("AD")
 			-- Auto-Detect
 			local imageId = "rbxassetid://10735250756"
-			print("LOOKING FOR: " .. string.sub(notification.NotificationTitle.Text, 1, -9))
+			print("LOOKING FOR: " .. string.sub(notification.NotificationTitle.Text, 1, -9) .. " (" .. string.len(string.sub(notification.NotificationTitle.Text, 1, -9)) .. " characters")
 			local entity = game.SavedEntities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
 			if not entity then
 				entity = workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
