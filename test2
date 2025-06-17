@@ -476,10 +476,6 @@ local function LoadCustomInstance(url: string)
 		return result
 	end
 end
-
-local savedEntities = Instance.new("Folder", game)
-savedEntities.Name = "SavedEntities"
-
 local player = game:GetService("Players").LocalPlayer
 
 local function espEntity(entity:Model)
@@ -572,22 +568,44 @@ task.spawn(function()
 
 	folder.ChildAdded:Connect(function(d)
 		task.wait()
-		if not table.find(savedEntities:GetChildren(), d.Name) then
-			d.Archivable = true
-			local ent = d:Clone()
-			ent.Parent = savedEntities
-			for i, v in pairs(ent:GetDescendants()) do
-				if v:IsA("BaseScript") then
-					v:Destroy()
-				end
-				if v:IsA("Sound") then
-					v:Destroy()
-				end
-			end
-		end
 
 		task.spawn(function()
+			repeat wait() until not d or d:FindFirstChildWhichIsA("BasePart")
+			if not d then return end
 			espEntity(d)
+			local imageId = "rbxassetid://10735250756"
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA('ImageLabel') then
+					imageId = v.Image
+					break
+				end
+			end
+			if imageId == "rbxassetid://10735250756" then
+				for i, v in pairs(d:GetDescendants()) do
+					if v:IsA('ParticleEmitter') then
+						imageId = v.Texture
+						break
+					end
+				end
+			end
+			local color = nil
+			for i, v in pairs(d:GetDescendants()) do
+				if v:IsA('PointLight') then
+					color = v.Color
+					break
+				end
+			end
+			if not color then color = Color3.new(0,0,0) end
+			local entity = {
+				Name = d.Name,
+				Color = ColorSequence.new({
+					ColorSequenceKeypoint.new(0, color),
+					ColorSequenceKeypoint.new(0.75, Color3.new(0,0,0)),
+					ColorSequenceKeypoint.new(1, Color3.new(0,0,0)),
+				}),
+				Image = imageId
+			}
+			table.insert(messageStyles, entity)
 		end)
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
@@ -633,19 +651,6 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 
 		task.wait()
-		if not table.find(savedEntities:GetChildren(), d.Name) then
-			d.Archivable = true
-			local ent = d:Clone()
-			ent.Parent = savedEntities
-			for i, v in pairs(ent:GetDescendants()) do
-				if v:IsA("Script") or v:IsA("LocalScript") then
-					v:Destroy()
-				end
-				if v:IsA("Sound") then
-					v:Destroy()
-				end
-			end
-		end
 
 		game:GetService("StarterGui"):SetCore("SendNotification", {
 			Title = d.Name .. " Spawned",
@@ -688,6 +693,14 @@ task.spawn(function()
 	game:GetService("CoreGui").RobloxGui.NotificationFrame.ChildAdded:Connect(function(notification)
 		local entName:string = getName(notification.NotificationTitle.Text)
 		local style = messageStyles[entName]
+		if not style then
+			for i, v in pairs(messageStyles) do
+				if v.Name and v.Name == entName then
+					style = v
+					break
+				end
+			end
+		end
 		if style then
 			notification.NotificationImage.Image = style.Image
 			notification.BackgroundColor3 = Color3.new(1,1,1)
@@ -697,7 +710,7 @@ task.spawn(function()
 			print("AD")
 			-- Auto-Detect
 			local imageId = "rbxassetid://10735250756"
-			local entity = savedEntities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
+			local entity = workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9)) or workspace.Entities:FindFirstChild(string.sub(notification.NotificationTitle.Text, 1, -9))
 			if not entity then return end
 			for i, v in pairs(entity:GetDescendants()) do
 				if v:IsA('ImageLabel') then
@@ -1266,4 +1279,3 @@ task.spawn(function()
 		end
 	end)
 end)
-
