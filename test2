@@ -7,8 +7,13 @@ local function getName(str:string)
 	local entName = string.sub(str, 0, space-1)
 	return string.upper(entName)
 end
-sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", math.huge)
+pcall(function()
+	sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+end)
+pcall(function()
+	sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", math.huge)
+end)
+
 local messageStyles = {
 	-- A section
 	["A-5"] = {
