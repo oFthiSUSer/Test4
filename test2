@@ -495,7 +495,11 @@ local function espEntity(entity:Model)
 	local Text = Instance.new("TextLabel")
 
 	--Properties:
+	
 	local adornee:BasePart = entity:FindFirstChild("HumanoidRootPart") or entity:FindFirstChildWhichIsA("BasePart")
+	repeat
+		adornee = entity:FindFirstChild("HumanoidRootPart") or entity:FindFirstChildWhichIsA("BasePart")
+	until adornee
 
 	ESP.Name = "ESP"
 	ESP.Parent = adornee
