@@ -7,6 +7,8 @@ local function getName(str:string)
 	local entName = string.sub(str, 0, space-1)
 	return string.upper(entName)
 end
+sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+sethiddenproperty(LocalPlayer, "MaxSimulationRadius", math.huge)
 local messageStyles = {
 	-- A section
 	["A-5"] = {
