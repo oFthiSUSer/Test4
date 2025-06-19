@@ -584,6 +584,8 @@ task.spawn(function()
 
 	folder.ChildAdded:Connect(function(d)
 		task.wait()
+		
+		repeat task.wait() until d:FindFirstChildWhichIsA("BasePart")
 		if not savedEntities:FindFirstChild(d.Name) then
 			d.Archivable = true
 			local ent = d:Clone()
@@ -646,6 +648,7 @@ task.spawn(function()
 	folder.ChildAdded:Connect(function(d)
 
 		task.wait()
+		repeat task.wait() until d:FindFirstChildWhichIsA("BasePart")
 		if not savedEntities:FindFirstChild(d.Name) then
 			d.Archivable = true
 			local ent = d:Clone()
