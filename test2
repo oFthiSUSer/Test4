@@ -13,6 +13,9 @@ end)
 pcall(function()
 	sethiddenproperty(game.Players.LocalPlayer, "MaxSimulationRadius", math.huge)
 end)
+pcall(function()
+	workspace.StreamingEnabled = false
+end)
 
 local messageStyles = {
 	-- A section
